@@ -56,6 +56,8 @@ public class InitDB {
 
 		int outterLoop1 = e / 6000;
 		int outterLoop2 = r / 6000;
+		
+		long start = System.currentTimeMillis();
 
 ////////////////////////////////////////////////////////////////////////////
 		List<Person> pL1 = new ArrayList<>();
@@ -169,8 +171,7 @@ public class InitDB {
 				ppL.add(p2p);
 			}
 			w.ppr.saveAll(ppL);
-			System.out.println("test rela");
-			System.out.println("save Time" + i + "x1000 !");
+			System.out.println("save P2P" + i + "x1000 !");
 			ppL.clear();
 		}
 
@@ -184,7 +185,7 @@ public class InitDB {
 				pcL.add(p2c);
 			}
 			w.pcr.saveAll(pcL);
-			System.out.println("save Time" + i + "x1000 !");
+			System.out.println("save P2C" + i + "x1000 !");
 			pcL.clear();
 		}
 
@@ -198,7 +199,7 @@ public class InitDB {
 				poL.add(p2o);
 			}
 			w.por.saveAll(poL);
-			System.out.println("save Time" + i + "x1000 !");
+			System.out.println("save P2O" + i + "x1000 !");
 			poL.clear();
 		}
 
@@ -212,7 +213,7 @@ public class InitDB {
 				oeL.add(o2e);
 			}
 			w.oer.saveAll(oeL);
-			System.out.println("save Time" + i + "x1000 !");
+			System.out.println("save O2E" + i + "x1000 !");
 			oeL.clear();
 		}
 
@@ -238,7 +239,7 @@ public class InitDB {
 				leL.add(l2e);
 			}
 			w.ler.saveAll(leL);
-			System.out.println("save Time" + i + "x1000 !");
+			System.out.println("save L2E" + i + "x1000 !");
 			leL.clear();
 		}
 
@@ -264,7 +265,7 @@ public class InitDB {
 				eoL.add(e2o);
 			}
 			w.eor.saveAll(eoL);
-			System.out.println("save Time" + i + "x1000 !");
+			System.out.println("save E2O" + i + "x1000 !");
 			eoL.clear();
 		}
 
@@ -278,9 +279,17 @@ public class InitDB {
 				elL.add(e2l);
 			}
 			w.elr.saveAll(elL);
-			System.out.println("save Time" + i + "x1000 !");
+			System.out.println("save E2L" + i + "x1000 !");
 			elL.clear();
 		}
+		
+		long finish = System.currentTimeMillis();
+		
+		long total = finish - start;
+		System.out.println("Total time: " + total );
 	}
+	
+	
+	
 
 }
