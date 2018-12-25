@@ -2,6 +2,7 @@ package oop.g8.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,13 +25,15 @@ import oop.g8.model.relation.person.P2T;
 
 @Service
 public class QueryService {
-	
+
 	@Autowired
 	private Wrap w;
-	
+
 	@Autowired
 	private ScannerService scn;
-	
+
+	private Scanner scn1 = new Scanner(System.in);;
+
 	private int selection;
 
 	public boolean execQuery() {
@@ -67,11 +70,15 @@ public class QueryService {
 			System.out.print("    >_LOCATION: ");
 			location = scn.getInputStr();
 			System.out.println("    #Kết quả:");
+			long s = System.currentTimeMillis();
 			List<Location> ll = w.lr.findByName(location);
 			System.out.println("Has " + ll.size() + " Location with name is " + location + " !");
 			for (Location l : ll) {
 				System.out.println(l.getCountry());
 			}
+
+			long e = System.currentTimeMillis();
+			System.out.println("Time excute query: " + (e - s) + "ms");
 			break;
 		}
 		case 2: {
@@ -82,11 +89,15 @@ public class QueryService {
 			System.out.print("    >_LOCATION: ");
 			location = scn.getInputStr();
 			System.out.println("    #Kết quả:");
+			long s = System.currentTimeMillis();
 			List<Location> ll = w.lr.findByName(location);
 			System.out.println("Has " + ll.size() + " Location with name is " + location + " !");
 			for (Location l : ll) {
 				System.out.println(l.getDescription());
 			}
+
+			long e = System.currentTimeMillis();
+			System.out.println("Time excute query: " + (e - s) + "ms");
 			break;
 		}
 
@@ -98,11 +109,15 @@ public class QueryService {
 			System.out.print("    >_COUNTRY: ");
 			country = scn.getInputStr();
 			System.out.println("    #Kết quả:");
+			long s = System.currentTimeMillis();
 			List<Country> mylist = w.cr.findByName(country);
 			System.out.println("Has " + mylist.size() + " result!");
 			for (Country i : mylist) {
 				System.out.println(i.getCapital());
 			}
+
+			long e = System.currentTimeMillis();
+			System.out.println("Time excute query: " + (e - s) + "ms");
 			break;
 		}
 
@@ -112,11 +127,15 @@ public class QueryService {
 			System.out.print("    >_PERSON: ");
 			person = scn.getInputStr();
 			System.out.println("    #Kết quả:");
+			long s = System.currentTimeMillis();
 			List<P2C> mylist = w.pcr.findByPerson_NameAndType(person, "đến_từ");
 			System.out.println("Has " + mylist.size() + " result!");
 			for (P2C i : mylist) {
 				System.out.println(i.getPerson().getName());
 			}
+
+			long e = System.currentTimeMillis();
+			System.out.println("Time excute query: " + (e - s) + "ms");
 			break;
 		}
 
@@ -128,12 +147,15 @@ public class QueryService {
 			System.out.print("    >_PERSON: ");
 			person = scn.getInputStr();
 			System.out.println("    #Kết quả:");
+			long s = System.currentTimeMillis();
 			List<Person> mylist = w.pr.findByName(person);
 			System.out.println("Has " + mylist.size() + " Person with name is " + person + " !");
 			for (Person i : mylist) {
 				System.out.println(i.getJob());
 			}
 
+			long e = System.currentTimeMillis();
+			System.out.println("Time excute query: " + (e - s) + "ms");
 			break;
 		}
 
@@ -146,12 +168,16 @@ public class QueryService {
 			System.out.print("    >_EVENT: ");
 			event = scn.getInputStr();
 			System.out.println("    #Kết quả:");
+			long s = System.currentTimeMillis();
 			List<E2L> mylist = w.elr.findByEvent_NameAndType(event, "diễn_ra_ở");
 			System.out.println("Has " + mylist.size() + " Event with name is " + event
 					+ " and has relation name 'diễn_ra_ở' with Location !");
 			for (E2L i : mylist) {
 				System.out.println(i.getLocation().getName());
 			}
+
+			long e = System.currentTimeMillis();
+			System.out.println("Time excute query: " + (e - s) + "ms");
 			break;
 		}
 
@@ -163,11 +189,15 @@ public class QueryService {
 			System.out.print("    >_EVENT: ");
 			event = scn.getInputStr();
 			System.out.println("    #Kết quả:");
+			long s = System.currentTimeMillis();
 			List<Event> mylist = w.er.findByName(event);
 			System.out.println("Has " + mylist.size() + " Event with name is " + event + " !");
 			for (Event i : mylist) {
 				System.out.println(i.getTimeStart() + "  -->  " + i.getTimeEnd());
 			}
+
+			long e = System.currentTimeMillis();
+			System.out.println("Time excute query: " + (e - s) + "ms");
 			break;
 		}
 
@@ -178,11 +208,15 @@ public class QueryService {
 			System.out.print("    >_ORGANIZATION: ");
 			organization = scn.getInputStr();
 			System.out.println("    #Kết quả:");
+			long s = System.currentTimeMillis();
 			List<Organization> mylist = w.or.findByName(organization);
 			System.out.println("Has " + mylist.size() + " Organization with name is " + organization + " !");
 			for (Organization i : mylist) {
 				System.out.println(i.getEmail() + " +  " + i.getPhone());
 			}
+
+			long e = System.currentTimeMillis();
+			System.out.println("Time excute query: " + (e - s) + "ms");
 			break;
 		}
 
@@ -194,11 +228,15 @@ public class QueryService {
 			System.out.print("    >_PERSON: ");
 			organization = scn.getInputStr();
 			System.out.println("    #Kết quả:");
+			long s = System.currentTimeMillis();
 			List<P2O> mylist = w.por.findByTypeLikeAndOrganization_Name("*", organization);
 			System.out.println("Has " + mylist.size() + " result !");
 			for (P2O i : mylist) {
 				System.out.println(i.getPerson().getName());
 			}
+
+			long e = System.currentTimeMillis();
+			System.out.println("Time excute query: " + (e - s) + "ms");
 			break;
 		}
 
@@ -210,11 +248,15 @@ public class QueryService {
 			System.out.print("    >_COUNTRY: ");
 			country = scn.getInputStr();
 			System.out.println("    #Kết quả:");
+			long s = System.currentTimeMillis();
 			List<Location> mylist = w.lr.findByCountry(country);
 			System.out.println("Has " + mylist.size() + " Location with country's name is " + country + " !");
 			for (Location i : mylist) {
 				System.out.println(i.getName());
 			}
+
+			long e = System.currentTimeMillis();
+			System.out.println("Time excute query: " + (e - s) + "ms");
 			break;
 		}
 
@@ -226,6 +268,7 @@ public class QueryService {
 			System.out.print("    >_TIME: ");
 			time = scn.getInputStr();
 			System.out.println("    #Kết quả:");
+			long s = System.currentTimeMillis();
 
 			List<P2T> mylist = w.ptr.findByTypeAndTime_NameContaining("sinh ra vào", time);
 			System.out.println("Has " + mylist.size() + " result!");
@@ -242,11 +285,15 @@ public class QueryService {
 			System.out.print("    >_ORGANIZATION: ");
 			organization = scn.getInputStr();
 			System.out.println("    #Kết quả:");
+			long s = System.currentTimeMillis();
 			List<O2O> mylist = w.oor.findByTypeAndOrganization2_Name("hợp tác", organization);
 			System.out.println("Has " + mylist.size() + "result!");
 			for (O2O i : mylist) {
 				System.out.println(i.getOrganization().getName());
 			}
+
+			long e = System.currentTimeMillis();
+			System.out.println("Time excute query: " + (e - s) + "ms");
 			break;
 		}
 
@@ -258,11 +305,15 @@ public class QueryService {
 			System.out.print("    >_COUNTRY: ");
 			country = scn.getInputStr();
 			System.out.println("    #Kết quả:");
+			long s = System.currentTimeMillis();
 			List<P2C> mylist = w.pcr.findByTypeAndCountry_Name("tới thăm", country);
 			System.out.println("Has " + mylist.size() + "result!");
 			for (P2C i : mylist) {
 				System.out.println(i.getPerson().getName());
 			}
+
+			long e = System.currentTimeMillis();
+			System.out.println("Time excute query: " + (e - s) + "ms");
 			break;
 		}
 
@@ -280,6 +331,7 @@ public class QueryService {
 			System.out.print("    >_YEAR: ");
 			year = scn.getInputStr();
 			System.out.println("    #Kết quả:");
+			long s = System.currentTimeMillis();
 			List<E2C> mylist = w.ecr.findByCountry_NameAndType(country, "diễn ra tại");
 			List<E2T> mylist2 = w.etr.findByTypeAndTime_Name_EndingWith("diễn ra vào", year);
 			List<Event> el1 = new ArrayList<>();
@@ -295,6 +347,9 @@ public class QueryService {
 			for (Event i : el1) {
 				System.out.println(i.getName());
 			}
+
+			long e = System.currentTimeMillis();
+			System.out.println("Time excute query: " + (e - s) + "ms");
 			break;
 		}
 
@@ -306,11 +361,15 @@ public class QueryService {
 			System.out.print("    >_PERSON: ");
 			person = scn.getInputStr();
 			System.out.println("    #Kết quả:");
+			long s = System.currentTimeMillis();
 			List<P2P> mylist = w.ppr.findByPerson2_NameAndTypeLike(person, "*");
 			System.out.println("Has " + mylist.size() + "result!");
 			for (P2P i : mylist) {
 				System.out.println(i.getPerson().getName());
 			}
+
+			long e = System.currentTimeMillis();
+			System.out.println("Time excute query: " + (e - s) + "ms");
 			break;
 		}
 
@@ -328,6 +387,7 @@ public class QueryService {
 			System.out.print("    >_YEAR: ");
 			year = scn.getInputStr();
 			System.out.println("    #Kết quả:");
+			long s = System.currentTimeMillis();
 			List<P2E> mylist = w.per.findByPerson_NameAndType(person, "tham gia");
 			List<E2T> mylist2 = w.etr.findByTypeAndTime_Name_EndingWith("diễn ra vào", year);
 			List<Event> el1 = new ArrayList<>();
@@ -343,6 +403,9 @@ public class QueryService {
 			for (Event i : el1) {
 				System.out.println(i.getName());
 			}
+
+			long e = System.currentTimeMillis();
+			System.out.println("Time excute query: " + (e - s) + "ms");
 			break;
 		}
 
@@ -351,10 +414,10 @@ public class QueryService {
 //			// param:null
 //			System.out.println("    #LOCATION nào diễn ra nhiều event nhất?");
 //			System.out.print("    >_YEAR: ");
-//			System.out.println("    #Kết quả:");
+//			System.out.println("    #Kết quả:"); long s = System.currentTimeMillis();
 //
 //			
-//			break;
+//			 System.out.println("Time excute query: " + (e - s ) + "ms"); break;
 //		}
 
 		case 18: {
@@ -370,6 +433,7 @@ public class QueryService {
 			System.out.print("    >_YEAR: ");
 			year = scn.getInputStr();
 			System.out.println("    #Kết quả:");
+			long s = System.currentTimeMillis();
 			List<E2L> mylist = w.elr.findByTypeAndLocation_Name("được tổ chức bởi", location);
 			List<E2T> mylist2 = w.etr.findByTypeAndTime_Name_EndingWith("diễn ra vào", year);
 
@@ -386,6 +450,9 @@ public class QueryService {
 			for (Event i : el1) {
 				System.out.println(i.getName());
 			}
+
+			long e = System.currentTimeMillis();
+			System.out.println("Time excute query: " + (e - s) + "ms");
 			break;
 		}
 //
@@ -397,11 +464,15 @@ public class QueryService {
 			System.out.print("    >_EVENT: ");
 			event = scn.getInputStr();
 			System.out.println("    #Kết quả:");
+			long s = System.currentTimeMillis();
 			List<P2E> mylist = w.per.findByEvent_NameAndType(event, "tham gia");
 			System.out.println("Has " + mylist.size() + " person 'tham gia' sự kiện " + event);
 //			for(P2E i : mylist) {
 //				System.out.println(i.getPerson().getName());
 //			}
+
+			long e = System.currentTimeMillis();
+			System.out.println("Time excute query: " + (e - s) + "ms");
 			break;
 		}
 
@@ -417,18 +488,24 @@ public class QueryService {
 			System.out.print("    >_COUNTRY: ");
 			country = scn.getInputStr();
 			System.out.println("    #Kết quả:");
+			long s = System.currentTimeMillis();
 			List<C2C> mylist = w.ccr.findByTypeAndCountry2_Name(relationship, country);
 			System.out.println("Has " + mylist.size() + "result!");
 			for (C2C i : mylist) {
 				System.out.println(i.getCountry().getName());
 			}
+
+			long e = System.currentTimeMillis();
+			System.out.println("Time excute query: " + (e - s) + "ms");
 			break;
 		}
 
 		case 21: {
 			return false;
 		}
+
 		}
+		scn1.nextLine();
 		return true;
 	}
 }

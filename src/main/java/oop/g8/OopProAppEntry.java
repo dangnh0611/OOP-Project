@@ -11,9 +11,11 @@ import oop.g8.generator.entity.OrganizationGenerator;
 import oop.g8.generator.entity.PersonGenerator;
 import oop.g8.generator.entity.SourceGenerator;
 import oop.g8.generator.entity.TimeGenerator;
+import oop.g8.repository.relation.RelaR;
 import oop.g8.service.InitDB;
 import oop.g8.service.QueryService;
 import oop.g8.service.ScannerService;
+import oop.g8.service.Wrap;
 
 /**
  * public void run(String... args) throws Exception <----> hàm main() mọi thứ
@@ -34,12 +36,20 @@ public class OopProAppEntry implements CommandLineRunner {
 	@Autowired
 	private ScannerService scn;
 
+	// test
+	@Autowired
+	private Wrap w;
+
+	@Autowired
+	private RelaR rr;
+
 	private int selection;
 
 	@Override
 	public void run(String... args) throws Exception {
 
-		SourceGenerator.getData("C:\\Users\\Hoang Nam\\Documents\\CODE-SOURCE\\STS3.9\\OopPro\\src\\main\\resources\\rawData/entity/Source/domain_list");
+		SourceGenerator.getData(
+				"C:\\Users\\Hoang Nam\\Documents\\CODE-SOURCE\\STS3.9\\OopPro\\src\\main\\resources\\rawData/entity/Source/domain_list");
 		PersonGenerator.getData(
 				"C:\\Users\\Hoang Nam\\Documents\\CODE-SOURCE\\STS3.9\\OopPro\\src\\main\\resources\\rawData\\entity\\Person\\firstname_list",
 				"C:\\Users\\Hoang Nam\\Documents\\CODE-SOURCE\\STS3.9\\OopPro\\src\\main\\resources\\rawData\\entity\\Person\\midname_list",
@@ -97,21 +107,22 @@ public class OopProAppEntry implements CommandLineRunner {
 				System.exit(0);
 			}
 		}
-
-//		Page<Person> pList = w.pr.findAll(new PageRequest(0, 2));
-//		System.out.println(pList.getContent());
-
-//		P2P p2p = new P2P("love", "link", new Date(), PersonGenerator.generatePerson(), PersonGenerator.generatePerson());
-//		w.ppr.save(p2p);
+//		Person p1 = new Person();
+//		p1.setName("test relation");
+//		p1.setAge(20);
+//		p1.setDescription("tessssssss");
 //		
-//		Page<P2P> pplist = w.ppr.findAll(new PageRequest(0, 2));
-//		System.out.println(pplist.getContent());
+//		Person p2 = new Person();
+//		p2.setName("test 22");
 //		
-//		List<P2P> myp2p = w.ppr.findByPerson_NameAndPerson2_Name("Balsam Bart Sharline", "Maurise Tomkin Seana");
-//		System.out.println(myp2p.get(0).getType());
+//		Entity e1 = new Entity();
+//		e1.setName("e1");
 //		
-//		List<P2P> myp2p2 = w.ppr.findByPerson_NameAndType("Balsam Bart Sharline", "love");
-//		System.out.println(myp2p2.get(0).getPerson2().getName());
+//		Entity e2 = new Entity();
+//		e2.setName("e1");
+//
+//		Rela r = new Rela("some type", "some link", new Date(), p1, p2);
+//		rr.save(r);
 
 	}
 
