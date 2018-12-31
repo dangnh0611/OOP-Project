@@ -1,5 +1,5 @@
-﻿------ HƯỚNG DẪN CÀI CẮM ------
-1. STS - Spring Tool Suite - (phát triển trên Eclipse, và tích hợp các tool dành cho Spring) - cần cái này để chạy Run as Spring Boot App
+﻿------ HƯỚNG DẪN CÀI ĐẶT và CẤU HÌNH------
+1. STS - Spring Tool Suite - (phát triển trên Eclipse, và tích hợp các tool dành cho Spring) - sau này dùng để chạy Run as Spring Boot App
 https://spring.io/tools3/sts/all
 
 2. Neo4j Desktop
@@ -12,17 +12,18 @@ https://github.com/dinhhoangnam998/aaa/commits/master
  - mở STS 
  - File -> Import -> Existing Maven Project
  - Chờ một chút để Maven tải các thư viện về
---> tranh thủ tạo database
 
 5. Tạo database
  - Bật Neo4j Desktop và tạo 1 db rỗng với password là "password"
- - Để ý cái HTTP port trong phần Manage --> copy vào phần cấu hình của project: tôi sẽ gửi ảnh lên sau cho dễ
+ - Cổng HTTP port trong phần Manage --> copy vào phần cấu hình của project (nếu mặc định là 7474 rồi thì k cần thực hiện cấu hình lại nữa)
 
-6. chuột phải vào project -> chọn Run as -> Spring Boot App
+6. Run lombok (- dùng để tự động sinh getter, setter, constuctor, - chỉ cần cấu hình 1 lần)
+ - từ Package Explorer -> Maven Dependencies -> lombok-1.18.14.jar -> chuột phải -> run as -> java application
+ - từ cửa sổ app mới hiện ra, chọn "Specify location..." và dẫn tới thư mục chương trình STS.exe (hoặc chờ 1, 2p để app tự tìm kiếm)
+ - Nhấn Install/Update
 
-chờ, chắc mất 1p
-
--- có thể trong quá trình cài gặp 1 số vấn đề, cứ inbox lên rồi t giải đáp nhé
+7. chuột phải vào project -> chọn Run as -> Spring Boot App
+ - chờ một chút....
 
 
 ------	 HƯỚNG DẪN MỘT CHÚT VỀ HỆ THỐNG -------
@@ -39,19 +40,9 @@ Hệ thống được chia là làm 4 gói chính: (+2 file)
 
 <service> -- các dịch vụ cung cấp cho người dùng
  + InitDb --> có nhiệm vụ lấy dữ liệu từ người dùng vào khởi tạo db theo yêu cầu
-  * cụ thể: yêu cầu người dùng nhập: Muốn bao nhiêu thực thể mỗi loại, cụ thể:
-   . muốn sinh bao nhiêu thực thể Person
-   . muốn sinh bao nhiêu thực thể Location
-   . muốn sinh bao nhiêu thực thể Event
-   ..., 
-
- và
-
-   . muốn sinh bao nhiêu Quan hệ (tổng số lượng quan hệ thôi, không yêu cầu số lượng cho mỗi loại)
  + QueryService: chứa các hàm truy vấn, cho người dùng lựa chọn và trả về kết quả
 
- + StatisticService: mới đầu định để các thứ liên quan đến thống kê ở đây, nhưng mà hình như k cần :v
-
+ + ....
 
 # 2 file:
 + OopProAppEntry --> tương tự file main, đây là nơi chạy chương trình của mình
